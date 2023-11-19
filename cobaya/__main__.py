@@ -19,7 +19,6 @@ if __name__ == "__main__":
         command_or_input = sys.argv[1].lower()
     except IndexError:  # no command
         print(help_msg)
-        exit()
     else:
         if command := commands.get("cobaya-" + command_or_input):
             module, func = command.split(":")
@@ -31,7 +30,6 @@ if __name__ == "__main__":
                 help_msg = ("Add a one of the following commands and its arguments "
                             "(`<command> -h` for help): %r" % list(commands))
                 print(help_msg)
-                exit()
             else:
                 # no command --> assume run with input file as 1st arg (don't pop!)
                 getattr(import_module("cobaya.run"), "run_script")()
